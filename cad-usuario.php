@@ -83,7 +83,7 @@ echo "<script>alert('Preencha um email Válido');</script>";
         </div>
     </nav>
 
-    <div class="container-fluid py-5" style="background-color: #f0f7da;">
+    <div class="container-fluid py-5" style="background-color: #FFFAEB;">
         <div class="container d-flex justify-content-center">
             <div class="col-md-6">
                 <h5 class="mb-4 text-center">PREENCHA OS DADOS A SEGUIR:</h5>
@@ -112,9 +112,9 @@ echo "<script>alert('Preencha um email Válido');</script>";
         </div>
     </div>
 
-        <footer class="text-center py-5" style="background-color: #1f192f;">
+        <footer class="text-center py-5" style="background-color: #001F36;">
             <div class="container text-white">
-                <p class="mb-0">Conecta+ © 2024 Projeto Integrador II - Todos os direitos reservados.</p>
+                <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

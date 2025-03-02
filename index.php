@@ -25,7 +25,7 @@
         </nav>
 
         <header class="text-center">
-            <div class="container-fluid d-flex flex-column justify-content-center align-items-center py-5" style="background-color:#2D6073;">
+            <div class="container-fluid d-flex flex-column justify-content-center align-items-center py-5" style="background-color:#13747D;">
                 <div style="max-width: 500px; width: 100%;">
                     <h1 class="display-5 fw-bold text-white mb-5">BEM VINDO A NOSSA PLATAFORMA DE PRODUTOS PARA ACESSIBILIDADE</h1>
                     <p class="lead mb-0" style="color: rgb(223, 223, 223);">Acesse seu perfil ou cadastre-se para adquirir seu produto</p>
@@ -33,7 +33,7 @@
             </div>
         </header>
     
-        <section class="py-5" style="background-color: #f0f7da;">
+        <section class="py-5" style="background-color: #FFFAEB;">
             <div class="container">
                 <h2 class="text-center mb-4">PRODUTOS EM DESTAQUE</h2>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -81,10 +81,10 @@
             </div>
         </section>
 
-        <footer class="text-center py-5" style="background-color: #1f192f;">
+        <footer class="text-center py-5" style="background-color: #001F36;">
             <div class="container text-white">
                 <p class="mb-4 fw-bold fst-italic">*ESTA PLATAFORMA NÃO OFERECE SUPORTE DE TRANSAÇÕES BANCÁRIAS, ENTRE EM CONTATO COM O USUÁRIO DO ANÚNCIO PARA NEGOCIAÇÕES SOBRE O PAGAMENTO E RETIRADA DO PRODUTO.</p>
-                <p class="mb-0">Conecta+ © 2024 Projeto Integrador II - Todos os direitos reservados.</p>
+                <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
             </div>
         </footer>
   

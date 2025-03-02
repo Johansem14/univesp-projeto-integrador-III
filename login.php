@@ -48,7 +48,7 @@ $conn->close();
     <title>Login de Usuário</title>
   </head>
   <body>
-    <nav class="navbar navbar-light" style="background-color: white; margin-right: 120px;>
+    <nav class="navbar navbar-light" style="background-color: white; margin-right: 120px;">
         <div class="container-fluid d-flex justify-content-center align-items-center">
             <!-- Logo -->
             <a class="navbar-brand">
@@ -60,7 +60,7 @@ $conn->close();
     </nav>
 
     <!-- Main Content -->
-    <div class="container-fluid py-5" style="background-color: #f0f7da">
+    <div class="container-fluid py-5" style="background-color: #FFFAEB">
         <div class="container d-flex justify-content-center">
             <div class="col-md-6">
                 <h5 class="mb-4 text-center">PREENCHA OS DADOS A SEGUIR:</h5>
@@ -85,9 +85,9 @@ $conn->close();
     </div>
 
 
-        <footer class="text-center py-5" style="background-color: #1f192f;">
+        <footer class="text-center py-5" style="background-color: #001F36;">
             <div class="container text-white">
-                <p class="mb-0">Conecta+ © 2024 Projeto Integrador II - Todos os direitos reservados.</p>
+                <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
             </div>
         </footer>
   

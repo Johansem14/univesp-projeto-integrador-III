@@ -131,7 +131,7 @@ if(isset($_FILES['arquivo'])){
     }
 }
     body {
-        background-color: #f0f7da;
+        background-color: #FFFAEB;
     }
     </style>
   </head>
@@ -255,9 +255,9 @@ if(isset($_FILES['arquivo'])){
         </form>
     </div>
 
-        <footer class="text-center py-5" style="background-color: #1f192f;">
+        <footer class="text-center py-5" style="background-color: #001F36;">
             <div class="container text-white">
-                <p class="mb-0">Conecta+ © 2024 Projeto Integrador II - Todos os direitos reservados.</p>
+                <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>

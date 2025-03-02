@@ -32,7 +32,7 @@ $result = $conn->query($sql);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f5f5dc;
+            background-color: #FFFAEB;
         }
         .favorite-item {
             background-color: #fff;
@@ -80,6 +80,7 @@ $result = $conn->query($sql);
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="meus-produtos.php">Meus Produtos</a></li>
                             <li><a class="dropdown-item" href="cad-prod.php">Cadastrar Produto</a></li>
+                            <li><a class="dropdown-item" href="area-interesses.php">Minha Área de Interesses</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="login.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
                         </ul>
@@ -116,9 +117,9 @@ $result = $conn->query($sql);
         ?>
     </div>
 
-    <footer class="text-center py-5" style="background-color: #1f192f;">
+    <footer class="text-center py-5" style="background-color: #001F36;">
         <div class="container text-white">
-            <p class="mb-0">Conecta+ © 2024 Projeto Integrador II - Todos os direitos reservados.</p>
+            <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
         </div>
     </footer>
 

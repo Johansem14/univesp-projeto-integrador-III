@@ -76,6 +76,7 @@ $result = $conn->query($sql);
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                         <li><a class="dropdown-item" href="meus-produtos.php">Meus Produtos</a></li>
                         <li><a class="dropdown-item" href="cad-prod.php">Cadastrar Produto</a></li>
+                        <li><a class="dropdown-item" href="area-interesses.php">Minha Área de Interesses</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item text-danger" href="login.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
                     </ul>
@@ -197,6 +198,13 @@ $result = $conn->query($sql);
         window.location.href = window.location.pathname;
     }
 </script>
+
+<footer class="text-center py-5" style="background-color: #001F36;">
+    <div class="container text-white">
+        <p class="mb-4 fw-bold fst-italic">*ESTA PLATAFORMA NÃO OFERECE SUPORTE DE TRANSAÇÕES BANCÁRIAS, ENTRE EM CONTATO COM O USUÁRIO DO ANÚNCIO PARA NEGOCIAÇÕES SOBRE O PAGAMENTO E RETIRADA DO PRODUTO.</p>
+        <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
+    </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

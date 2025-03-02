@@ -137,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f0f7da;
+            background-color: #FFFAEB;
         }
     </style>
 </head>
@@ -169,6 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="meus-produtos.php">Meus Produtos</a></li>
                             <li><a class="dropdown-item" href="cad-prod.php">Cadastrar Produto</a></li>
+                            <li><a class="dropdown-item" href="area-interesses.php">Minha Área de Interesses</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="index.php"><i class="bi bi-box-arrow-right"> Sair</i></a></li>
                         </ul>
@@ -265,9 +266,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
     </div>
 
-    <footer class="text-center py-5" style="background-color: #1f192f;">
+    <footer class="text-center py-5" style="background-color: #001F36;">
         <div class="container text-white">
-            <p class="mb-0">Conecta+ © 2024 Projeto Integrador II - Todos os direitos reservados.</p>
+            <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
         </div>
     </footer>
 
