@@ -165,6 +165,7 @@ if(isset($_FILES['arquivo'])){
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li><a class="dropdown-item" href="meus-produtos.php">Meus Produtos</a></li>
                             <li><a class="dropdown-item" href="cad-prod.php">Cadastrar Produto</a></li>
+                            <li><a class="dropdown-item" href="area-interesses.php">Minha Área de Interesses</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item text-danger" href="login.php"><i class=" bi bi-box-arrow-right"> Sair</i></a></li>
                         </ul>
