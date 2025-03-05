@@ -1,3 +1,52 @@
+<?php
+include("conexao.php");
+session_start();
+
+if (!isset($_SESSION['usuario_id'])){
+    echo "<script>alert('Usuário não está logado.');
+    window.location.href = 'login.php'
+    </script>";
+}else{
+    $usuario_id = $_SESSION['usuario_id'];
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
+    $nome = $_POST['produto'];
+    $produto = $_POST['categoria'];
+
+    if(empty($nome)){
+        echo "<script>alert('Digite o nome de um produto.');
+        window.location.href = 'cad-interesses.php'
+        </script>";
+
+    }
+    if($produto ===''){
+        echo "<script>alert('Selecione uma categoria.');
+        window.location.href = 'cad-interesses.php'
+        </script>";
+    }
+$sql = "INSERT INTO tb_area_interesse (tb_usuarios_id_usuarios, nome_produto, categoria_interesse, data_interesse) VALUES(?,?,?, NOW())";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("iss", $usuario_id, $nome, $produto);
+
+if($stmt->execute()){
+    echo "<script>alert('Produto Cadastrado com Sucesso.');
+    window.location.href = 'cad-interesses.php'
+    </script>";
+
+}else{
+    echo "<script>alert('Produto Não Cadastrado.');
+    window.location.href = 'cad-interesses.php'
+    </script>";
+}
+}
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,18 +63,21 @@
             background-color: #FFFAEB;
         }
         .form-container {
+            display:flex;
             background-color: white;
-            padding: 20px;
+            justify-content: center;
+            align-items:center;
+            padding: 150px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: 25%;
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container-fluid position-relative">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
             </a>
@@ -62,20 +114,20 @@
 
     <!-- Conteúdo Principal -->
     <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="form-container">
-            <form>
+        <div class="form-container container-fluid">
+            <form class="col-12" method="POST" action="">
                 <div class="mb-3">
-                    <label for="nomeProduto" class="form-label fw-bold">Digite o nome do produto:</label>
-                    <input type="text" class="form-control" id="nomeProduto" value="Cadeira 1">
+                    <h4>Digite o nome do produto:</h4>
+                    <input type="text" class="form-control" id="nomeProduto" name="produto" placeholder="Insira aqui...">
                 </div>
     
                 <div class="mb-3">
-                    <label for="categoriaProduto" class="form-label fw-bold">Selecione a categoria do produto:</label>
-                    <select class="form-select" id="categoriaProduto">
-                        <option selected>Cadeiras</option>
-                        <option>Andadores</option>
-                        <option>Muletas</option>
-                        <option>Outros</option>
+                    <select class="form-select" id="categoriaProduto" name="categoria">
+                        <option value="" disable selected>Selecione a categoria do Produto</option>
+                        <option value="Cadeiras">Cadeiras</option>
+                        <option value="Andadores">Andadores</option>
+                        <option value="Muletas">Muletas</option>
+                        <option value="Outros">Outros</option>
                     </select>
                 </div>
     
