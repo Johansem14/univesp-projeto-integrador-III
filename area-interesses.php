@@ -50,7 +50,12 @@
     <!-- Conteúdo Principal -->
     <div class="container-fluid py-5" style="background-color: #FFFAEB;">
         <div class="container text-center">
-            <button class="btn btn-primary mb-4" href="cad-interesses.php"><i class="fas fa-plus"></i> Adicionar Interesse</button>
+        <a href="cad-interesses.php">
+            <button class="btn btn-primary mb-4">
+                <i class="fas fa-plus">
+                   
+                </i> Adicionar Interesse</button>
+                </a>
             
             <div class="row justify-content-center">
                 <div class="col-md-8">
