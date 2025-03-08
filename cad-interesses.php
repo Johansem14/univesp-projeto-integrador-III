@@ -12,40 +12,35 @@ if (!isset($_SESSION['usuario_id'])){
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $nome = $_POST['produto'];
-    $produto = $_POST['categoria'];
+    $produto = isset($_POST['categoria']) ? $_POST['categoria'] : '';
 
-    if(empty($nome)){
-        echo "<script>alert('Digite o nome de um produto.');
-        window.location.href = 'cad-interesses.php'
-        </script>";
+if(empty($nome)){
+    echo "<script>alert('Digite o nome de um produto.');
+    </script>";
 
-    }
-    if($produto ===''){
-        echo "<script>alert('Selecione uma categoria.');
-        window.location.href = 'cad-interesses.php'
-        </script>";
-    }
-$sql = "INSERT INTO tb_area_interesse (tb_usuarios_id_usuarios, nome_produto, categoria_interesse, data_interesse) VALUES(?,?,?, NOW())";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("iss", $usuario_id, $nome, $produto);
+}else if($produto ===''){
+    echo "<script>alert('Selecione uma categoria.');
+    </script>";
+}else{
+    $sql = "INSERT INTO tb_area_interesse (tb_usuarios_id_usuarios, nome_produto, categoria_interesse, data_interesse) VALUES(?,?,?, NOW())";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iss", $usuario_id, $nome, $produto);
 
 if($stmt->execute()){
-    echo "<script>alert('Produto Cadastrado com Sucesso.');
-    window.location.href = 'cad-interesses.php'
-    </script>";
+echo "<script>alert('Produto Cadastrado com Sucesso.');
+window.location.href = 'cad-interesses.php'
+</script>";
 
 }else{
-    echo "<script>alert('Produto Não Cadastrado.');
-    window.location.href = 'cad-interesses.php'
-    </script>";
+echo "<script>alert('Produto Não Cadastrado.');
+window.location.href = 'cad-interesses.php'
+</script>";
 }
 }
+}
+
 
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -67,11 +62,36 @@ if($stmt->execute()){
             background-color: white;
             justify-content: center;
             align-items:center;
-            padding: 150px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 25%;
+            width: 40%;
+            padding-top:100px;
+            padding-bottom:50px
         }
+        
+        @media (max-width: 770px) {
+    .form-container {
+        width: 80%; /* Aumenta a largura do formulário para 60% em telas menores */
+        padding-top: 80px; /* Ajuste do padding se necessário */
+        padding-bottom: 40px; /* Ajuste do padding se necessário */
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+    .container {
+        width: 70%;  /* Ajusta a largura para 70% em telas médias */
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        width: 100%;  /* Ajusta a largura para 70% em telas médias */
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -118,12 +138,12 @@ if($stmt->execute()){
             <form class="col-12" method="POST" action="">
                 <div class="mb-3">
                     <h4>Digite o nome do produto:</h4>
-                    <input type="text" class="form-control" id="nomeProduto" name="produto" placeholder="Insira aqui...">
+                    <input type="text" class="form-control" id="nomeProduto" name="produto" value="<?php if(isset($_POST['produto'])) echo $_POST['produto'];?>"  placeholder="Insira aqui...">
                 </div>
     
                 <div class="mb-3">
                     <select class="form-select" id="categoriaProduto" name="categoria">
-                        <option value="" disable selected>Selecione a categoria do Produto</option>
+                        <option value="" disabled selected>Selecione a categoria do Produto</option>
                         <option value="Cadeiras">Cadeiras</option>
                         <option value="Andadores">Andadores</option>
                         <option value="Muletas">Muletas</option>
