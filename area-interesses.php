@@ -1,3 +1,10 @@
+<?php
+  include("conexao.php");
+  $sql = "SELECT * FROM tb_area_interesse";
+  $result = $conn->query($sql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,6 +15,29 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    <style>
+        .container_interesse{
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .botoes{
+            display:flex;
+            gap:10px;
+        }
+
+        .categoria_produto{
+            font-size:20px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -59,31 +89,26 @@
             
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <!-- Card de Interesse -->
-                    <div class="card mb-3 p-3">
-                        <h5><strong>NOME DO PRODUTO</strong></h5>
-                        <p class="text-muted">CATEGORIA DO PRODUTO</p>
-                        <div class="gap-2 flex-row">
-                            <button class="btn btn-danger"><i class="fas fa-trash"></i> Remover</button>
-                            <button class="btn btn-primary"><i class="fas fa-edit"></i> Editar</button>
-                        </div>
-                    </div>
-                    <div class="card mb-3 p-3">
-                        <h5><strong>NOME DO PRODUTO</strong></h5>
-                        <p class="text-muted">CATEGORIA DO PRODUTO</p>
-                        <div class="gap-2 flex-row">
-                            <button class="btn btn-danger"><i class="fas fa-trash"></i> Remover</button>
-                            <button class="btn btn-primary"><i class="fas fa-edit"></i> Editar</button>
-                        </div>
-                    </div>
-                    <div class="card mb-3 p-3">
-                        <h5><strong>NOME DO PRODUTO</strong></h5>
-                        <p class="text-muted">CATEGORIA DO PRODUTO</p>
-                        <div class="gap-2 flex-row">
-                            <button class="btn btn-danger"><i class="fas fa-trash"></i> Remover</button>
-                            <button class="btn btn-primary"><i class="fas fa-edit"></i> Editar</button>
-                        </div>
-                    </div>
+                   <?php
+                     if($result && $result->num_rows > 0){
+                        while ($row = $result->fetch_assoc()){
+                          echo "<div class='container_interesse'>";
+                          echo "<div class='item'>";
+                          
+                          echo "<h2>" . $produto = $row['nome_produto'] . "</h2>";
+                          echo "<p class='categoria_produto'>" . "Categoria: " . $categoria = $row['categoria_interesse'] . "</p>";
+                          echo "<div class='botoes'>";
+                          echo "<a href='cad-interesses.php?id=" . $row['id'] . "' class='btn btn-primary'><i class='bi bi-pencil'></i> Editar Produto</a>";               
+                          echo "<a href='remover-produto.php?id=" . $row['id'] . "' class='btn btn-danger' onclick=\"return confirm('Você tem certeza que deseja remover este produto?');\"><i class='bi bi-trash'></i> Remover Produto</a>";
+                          echo "</div>";
+                          echo "</div>";
+                          echo "</div>";
+
+                        }
+                     }
+                   ?>
+                   
+                    
                 </div>
             </div>
         </div>
