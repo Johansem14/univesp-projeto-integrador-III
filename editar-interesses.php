@@ -32,12 +32,17 @@ if($result->num_rows > 0){
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
-    $nome_produto = $conn->real_escape_string($_POST['produto']);
-    $categoria_produto = $conn->real_escape_string($_POST['categoria']);
-
-    if (empty($_POST['produto']) || (empty($_POST['categoria'])) || $categoria_interesse === ''){
-        echo "<script>alert('Todos os campos devem ser preenchidos.'); window.location.href = 'area-interesses.php';</script>";
+    if (empty($_POST['produto']) || !isset($_POST['categoria']) || empty($_POST['categoria'])){
+        echo "<script>alert('Todos os campos devem ser preenchidos.');</script>";
+        
     }else{
+
+        $nome_produto = isset($_POST['produto']) ? $_POST['produto'] : '';
+        $categoria_produto = isset($_POST['categoria']) ? $_POST['categoria'] : '';
+
+        // Escapa as variáveis para evitar injeção de SQL
+        $nome_produto = $conn->real_escape_string($nome_produto);
+        $categoria_produto = $conn->real_escape_string($categoria_produto);
         $sql_interesses = "UPDATE tb_area_interesse SET
         nome_produto = '$nome_produto',
         categoria_interesse = '$categoria_produto'
@@ -157,8 +162,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
                 <div class="mb-3">
                     <select class="form-select" id="categoriaProduto" name="categoria">
-                       <!-- Ajustar essa linha de código abaixo: -->
-                       <!-- <option value="<?php if(isset($categoria_interesse))?>"> <?php echo $categoria_interesse?></option> -->
                         <option value="" disabled selected>Selecione a categoria do Produto</option>
                         <option value="Cadeiras">Cadeiras</option>
                         <option value="Andadores">Andadores</option>
