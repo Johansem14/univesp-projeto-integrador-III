@@ -1,7 +1,8 @@
 <?php
   include("conexao.php");
   session_start();
-  $sql = "SELECT * FROM tb_area_interesse";
+  $id_usuario = $_SESSION['usuario_id'];
+  $sql = "SELECT * FROM tb_area_interesse WHERE tb_usuarios_id_usuarios = $id_usuario";
   $result = $conn->query($sql);
 ?>
 
