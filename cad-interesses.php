@@ -28,7 +28,7 @@ if(empty($nome)){
 
 if($stmt->execute()){
 echo "<script>alert('Produto Cadastrado com Sucesso.');
-window.location.href = 'cad-interesses.php'
+window.location.href = 'area-interesses.php'
 </script>";
 
 }else{

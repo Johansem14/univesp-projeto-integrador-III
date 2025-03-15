@@ -100,7 +100,7 @@
                           echo "<p class='categoria_produto'>" . "Categoria: " . $categoria = $row['categoria_interesse'] . "</p>";
                           echo "<div class='botoes'>";
                           echo "<a href='editar-interesses.php?id=" . $row['id'] . "' class='btn btn-primary'><i class='bi bi-pencil'></i> Editar Produto</a>";               
-                          echo "<a href='remover-produto.php?id=" . $row['id'] . "' class='btn btn-danger' onclick=\"return confirm('Você tem certeza que deseja remover este produto?');\"><i class='bi bi-trash'></i> Remover Produto</a>";
+                          echo "<a href='deletar-interesses.php?id=" . $row['id'] . "' class='btn btn-danger' onclick=\"return confirm('Você tem certeza que deseja remover este produto?');\"><i class='bi bi-trash'></i> Remover Produto</a>";
                           echo "</div>";
                           echo "</div>";
                           echo "</div>";
