@@ -167,7 +167,9 @@
      
                  <div class="d-flex gap-2 justify-content-center">
                      <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
+                     <a href="area-interesses.php">
                      <button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</button>
+                     </a>
                  </div>
              </form>
          </div>
