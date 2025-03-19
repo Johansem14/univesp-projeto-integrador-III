@@ -2,14 +2,14 @@
 include("../conexao.php");
 
 $url = "localhost/univesp-projeto-integrador-III/";
-$sql_produtos = "SELECT * FROM tb_produtos";
+$sql_produtos = "SELECT * FROM produtos_view";
 $result = $conn->query($sql_produtos);
 
 $data = [];
 
 if($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
-        $data =[ 
+        $data[] =[ 
             'id' => $row['id_produtos'],
             'nome_anunciante' => $row['nome_anunciante'],
             'telefone' => $row['telefone'],
