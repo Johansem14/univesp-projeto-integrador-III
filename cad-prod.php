@@ -83,6 +83,7 @@ if(isset($_FILES['arquivo'])){
 
             if($conn->query($sqlendereco) === TRUE){
 
+               
             echo "<script>alert('Produto Cadastrado com sucesso');</script>";
 
     
