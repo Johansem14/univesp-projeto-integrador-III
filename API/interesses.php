@@ -8,7 +8,7 @@ $data = [];
 
 if ($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
-        $data = [
+        $data[] = [
             'nome_anunciante' => $row['nome_anunciante'],
             'telefone_anunciante' => $row['telefone_anunciante'],
             'produto' => $row['produto'],
