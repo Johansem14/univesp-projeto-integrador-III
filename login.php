@@ -76,7 +76,7 @@ $conn->close();
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Entrar</button>
                         <div class="mt-3 text-center">
-                           <!-- <a href="#" class="text-decoration-none">Esqueci minha senha</a> -->
+                           <a href="recuperar-senha.php" class="text-decoration-none">Esqueci minha senha</a>
                         </div>
                     </form>
                 </div>
