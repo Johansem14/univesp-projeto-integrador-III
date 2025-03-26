@@ -49,6 +49,48 @@ $result = $conn->query($sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .item-container{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual */
+            gap: 20px; /* Espaço entre as colunas e linhas */
+            justify-items: center;
+        }
+
+    .home-produtos{
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px; /* Reduzindo o padding para não distorcer o tamanho */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Garantir que o item ocupe toda a largura disponível da célula da grid */
+   /* aspect-ratio: 1;*/ /* Garante que o item tenha a mesma largura e altura */
+    overflow: hidden; /* Se o conteúdo for maior que o espaço, ele será cortado */
+    }
+
+    .home-produtos img{
+        margin: 0 auto;
+        display: block;
+        height:200px;
+        
+    }
+
+    .home-detalhes{
+        text-align:center;
+    }
+
+
+        @media (max-width: 768px) {
+        .item-container {
+          grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
+            
+
+        }
+      }
+
+
+    </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
@@ -119,23 +161,30 @@ $result = $conn->query($sql);
                         <label class="form-check-label" for="categoriaMuletas">Muletas</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="muletas" id="categoriaMuletas" name="categoria[]">
+                        <input class="form-check-input" type="checkbox" value="Outros" id="categoriaMuletas" name="categoria[]">
                         <label class="form-check-label" for="categoriaMuletas">Outros</label>
                     </div>
                 </div>
 
+                <?php
+                    $sql_uf = "SELECT DISTINCT uf FROM tb_enderecos";
+                    $result_uf = $conn->query($sql_uf);
+                ?>
                 <h5 class="mt-4 mb-3">Localização</h5>
-                <div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="sp" id="localSP" name="localizacao[]">
-                        <label class="form-check-label" for="localSP">SP</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="rj" id="localMairipora" name="localizacao[]">
-                        <label class="form-check-label" for="localMairipora">RJ</label>
-                    </div>
-                </div>
-
+                <?php
+                    if($result_uf->num_rows >0){
+                       
+                       while($row = $result_uf->fetch_assoc()){
+                       
+                        echo "<div class='form-check'>
+                        <input class='form-check-input' type='checkbox' value='" .$row['uf'] . "'id='uf" . $row['uf'] . "'name=localizacao[]'>
+                        <label class='form-check-label' for='uf" . $row['uf'] . "'>" .$row['uf'] . "</label>
+                        </div>";
+                      
+                       }
+                    
+                    }
+                ?>
                 <!-- Botão para aplicar o filtro -->
                 <button type="submit" class="btn btn-primary mt-4">Aplicar Filtros</button>
                 <!-- Botão para limpar os filtros -->
@@ -146,39 +195,26 @@ $result = $conn->query($sql);
         <!-- Tabela de produtos -->
         <div class="col-lg-10">
             <h2 class="text-center">Lista de Produtos</h2>
-            <div class="table-responsive mt-4">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Imagem</th>
-                            <th>Nome do Anunciante</th>
-                            <th>Produto</th>
-                            <th>Categoria</th>
-                            <th>Oferta</th>
-                            <th>Valor</th>
-                            <th>Descrição</th>
-                            <th>Endereço</th>
-                            <th>Telefone</th>
-                            <th>Chamar no Whatsapp</th>
-                        </tr>
-                    </thead>
-                    <tbody>
                         <?php
+                        echo "<div class='item-container mt-5'>";
                         if ($result && $result->num_rows > 0) {
+                            
                             while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td><img src='" . htmlspecialchars($row['path']) . "' alt='" . htmlspecialchars($row['nome_arquivo']) . "' style='max-width: 150px; max-height: 150px;'></td>";
-                                echo "<td>" . htmlspecialchars($row['nome_anunciante']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['produto']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['categoria']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['oferta']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['valor']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['descricao']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['bairro']) . ", " . htmlspecialchars($row['localidade']) . " - " . htmlspecialchars($row['uf']) . "</td>";
-                                echo "<td>" . htmlspecialchars($row['telefone']) . "</td>";
-                                echo "<td><a href='https://api.whatsapp.com/send?phone=55" . htmlspecialchars($row['telefone']) . "' target='_blank' class='btn btn-success'><i class='fab fa-whatsapp'></i></a></td>";
-                                echo "</tr>";
+                            echo "<div class='home-produtos pt-5'>";
+                            echo "<img src='" . htmlspecialchars($row['path']) . "' alt='" . htmlspecialchars($row['nome_arquivo']) . "' style='max-width: 150px; max-height: 150px;'>";
+                            echo "<div class='home-detalhes mt-2'>";
+                            echo "<span class='h4 text-primary'>" .htmlspecialchars($row['produto']) ."</span><br>";
+                            echo "<div class='mt-2'";
+                            echo "<span>" . "<strong>R$</strong> ".htmlspecialchars($row['valor']) ."</span><br>";
+                            echo "<span>".htmlspecialchars($row['uf']) ."</span><br>";
+                            echo "</div>";
+                            echo "<div class='home-btn pt-3 pb-2'>";
+                            echo "<a href='https://api.whatsapp.com/send?phone=55" . htmlspecialchars($row['telefone']) . "' target='_blank' class='btn btn-success'>Contato <i class='fab fa-whatsapp'></i></a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
                             }
+                            echo "</div>";
                         } else {
                             echo "<tr><td colspan='10' class='text-center'>Nenhum produto encontrado.</td></tr>";
                         }
