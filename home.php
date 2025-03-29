@@ -14,17 +14,17 @@ $conditions = [];
 // Verifica cada filtro e adiciona as condições ao array
 if (isset($_GET['oferta'])) {
     $oferta = $_GET['oferta'];
-    $conditions[] = "p.oferta IN ('" . implode("','", array_map('real_escape_string', $oferta)) . "')";
+    $conditions[] = "p.oferta IN ('" . implode("','", $oferta) . "')";
 }
 
 if (isset($_GET['categoria'])) {
     $categoria = $_GET['categoria'];
-    $conditions[] = "p.categoria IN ('" . implode("','", array_map('real_escape_string', $categoria)) . "')";
+    $conditions[] = "p.categoria IN ('" . implode("','", $categoria) . "')";
 }
 
 if (isset($_GET['localizacao'])) {
     $localizacao = $_GET['localizacao'];
-    $conditions[] = "e.uf IN ('" . implode("','", array_map('real_escape_string', $localizacao)) . "')";
+    $conditions[] = "e.uf IN ('" . implode("','", $localizacao) . "')";
 }
 
 $sql = "SELECT p.id_produtos, p.nome_anunciante, p.telefone, p.produto, p.categoria, p.oferta, p.valor, p.descricao, p.nome_arquivo, p.path, e.bairro, e.localidade, e.uf 
