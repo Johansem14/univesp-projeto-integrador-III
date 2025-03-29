@@ -14,17 +14,17 @@ $conditions = [];
 // Verifica cada filtro e adiciona as condições ao array
 if (isset($_GET['oferta'])) {
     $oferta = $_GET['oferta'];
-    $conditions[] = "p.oferta IN ('" . implode("','", $oferta) . "')";
+    $conditions[] = "p.oferta IN ('" . implode("','", array_map([$conn, 'real_escape_string'], $oferta)) . "')";
 }
 
 if (isset($_GET['categoria'])) {
     $categoria = $_GET['categoria'];
-    $conditions[] = "p.categoria IN ('" . implode("','", $categoria) . "')";
+    $conditions[] = "p.categoria IN ('" . implode("','", array_map([$conn,'real_escape_string'], $categoria)) . "')";
 }
 
 if (isset($_GET['localizacao'])) {
     $localizacao = $_GET['localizacao'];
-    $conditions[] = "e.uf IN ('" . implode("','", $localizacao) . "')";
+    $conditions[] = "e.uf IN ('" . implode("','", array_map([$conn,'real_escape_string'], $localizacao)) . "')";
 }
 
 $sql = "SELECT p.id_produtos, p.nome_anunciante, p.telefone, p.produto, p.categoria, p.oferta, p.valor, p.descricao, p.nome_arquivo, p.path, e.bairro, e.localidade, e.uf 
@@ -135,7 +135,7 @@ $result = $conn->query($sql);
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-2 bg-light p-4">
-            <form id="filterForm" method="GET" action="">
+            <form id="filterForm" method="" action="">
                 <h5 class="mb-3">Tipo de Oferta</h5>
                 <div>
                     <div class="form-check">
@@ -171,17 +171,21 @@ $result = $conn->query($sql);
                 <?php
                     $sql_uf = "SELECT DISTINCT uf FROM tb_enderecos";
                     $result_uf = $conn->query($sql_uf);
+                    
                 ?>
                 <h5 class="mt-4 mb-3">Localização</h5>
                 <?php
                     if ($result_uf->num_rows > 0) {
+                        
                         while ($row = $result_uf->fetch_assoc()) {
                             echo "<div class='form-check'>
                             <input class='form-check-input' type='checkbox' value='" . $row['uf'] . "' id='uf" . $row['uf'] . "' name='localizacao[]'>
                             <label class='form-check-label' for='uf" . $row['uf'] . "'>" . strtoupper($row['uf']) . "</label>
                             </div>";
+                        
                         }
                     }
+                    
                 ?>
                 <button type="submit" class="btn btn-primary mt-4">Aplicar Filtros</button>
                 <button type="button" class="btn btn-secondary mt-2" onclick="limparFiltros()">Limpar Filtros</button>
@@ -190,7 +194,7 @@ $result = $conn->query($sql);
 
         <div class="col-lg-10">
             <section class="pesquisar">
-                <form action="" method="POST">
+                <form action="home.php" method="POST">
                     <div class="col-10 col-md-6 mt-3 form-pesquisar">
                         <input type="text" class="form-control" placeholder="Pesquisar Produto..." name="pesquisar">
                         <div class="btn-pesquisar">
