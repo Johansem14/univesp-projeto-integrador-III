@@ -1,3 +1,4 @@
+
 <?php
 include("conexao.php");
 session_start();
@@ -14,7 +15,7 @@ $conditions = [];
 // Verifica cada filtro e adiciona as condições ao array
 if (isset($_GET['oferta'])) {
     $oferta = $_GET['oferta'];
-    $conditions[] = "p.oferta IN ('" . implode("','", array_map([$conn, 'real_escape_string'], $oferta)) . "')";
+    $conditions[] = "p.oferta IN ('" . implode("','", array_map([$conn,'real_escape_string'], $oferta)) . "')";
 }
 
 if (isset($_GET['categoria'])) {
@@ -135,7 +136,7 @@ $result = $conn->query($sql);
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-2 bg-light p-4">
-            <form id="filterForm" method="" action="">
+            <form id="filterForm" method="GET" action="">
                 <h5 class="mb-3">Tipo de Oferta</h5>
                 <div>
                     <div class="form-check">
@@ -171,21 +172,17 @@ $result = $conn->query($sql);
                 <?php
                     $sql_uf = "SELECT DISTINCT uf FROM tb_enderecos";
                     $result_uf = $conn->query($sql_uf);
-                    
                 ?>
                 <h5 class="mt-4 mb-3">Localização</h5>
                 <?php
                     if ($result_uf->num_rows > 0) {
-                        
                         while ($row = $result_uf->fetch_assoc()) {
                             echo "<div class='form-check'>
                             <input class='form-check-input' type='checkbox' value='" . $row['uf'] . "' id='uf" . $row['uf'] . "' name='localizacao[]'>
                             <label class='form-check-label' for='uf" . $row['uf'] . "'>" . strtoupper($row['uf']) . "</label>
                             </div>";
-                        
                         }
                     }
-                    
                 ?>
                 <button type="submit" class="btn btn-primary mt-4">Aplicar Filtros</button>
                 <button type="button" class="btn btn-secondary mt-2" onclick="limparFiltros()">Limpar Filtros</button>
@@ -194,7 +191,7 @@ $result = $conn->query($sql);
 
         <div class="col-lg-10">
             <section class="pesquisar">
-                <form action="home.php" method="POST">
+                <form action="" method="POST">
                     <div class="col-10 col-md-6 mt-3 form-pesquisar">
                         <input type="text" class="form-control" placeholder="Pesquisar Produto..." name="pesquisar">
                         <div class="btn-pesquisar">
@@ -202,7 +199,7 @@ $result = $conn->query($sql);
                         </div>
                         <div class="btn-limpar">
                             <a href="home.php">
-                            <button type="submit" class="btn btn-danger">Limpar</button>
+                            <button type="button" class="btn btn-danger" onclick="limparFiltros()">Limpar</button>
                             </a>
                         </div>
                     </div>
@@ -252,6 +249,18 @@ $result = $conn->query($sql);
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+
+function limparFiltros() {
+    const form = document.getElementById('filterForm');
+    form.reset(); // Reseta os checkboxes e campos do filtro
+
+    // Remove os parâmetros da URL (se houver)
+    const url = window.location.href.split('?')[0]; // Pega apenas a URL sem parâmetros
+    window.location.href = url; // Redireciona para a mesma URL sem parâmetros
+}
+</script>
+
+
 </body>
 </html>
