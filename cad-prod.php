@@ -65,7 +65,7 @@ if(isset($_FILES['arquivo'])){
 
     if($extensao != "jpg" && $extensao != 'png')
     echo "<script>alert('Tipo de arquivo não suportado, envie no formato jpg ou png');</script>";
-
+else{
     $path = $pasta . $novoNomeDoArquivo . "." . $extensao;
     $deu_certo = move_uploaded_file($arquivo["tmp_name"], $path);
     if($deu_certo){
@@ -84,7 +84,9 @@ if(isset($_FILES['arquivo'])){
             if($conn->query($sqlendereco) === TRUE){
 
                
-            echo "<script>alert('Produto Cadastrado com sucesso');</script>";
+            echo "<script>alert('Produto Cadastrado com sucesso');
+            window.location.href = 'home.php'
+            </script>";
 
     
         
@@ -95,6 +97,9 @@ if(isset($_FILES['arquivo'])){
 }
 }
 }
+
+}
+    
 ?>
 
 <!doctype html>
@@ -182,42 +187,41 @@ if(isset($_FILES['arquivo'])){
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="nome" class="form-label fw-bold">Nome</label>
-                        <input type="text" name="nome" class="form-control" id="nome" placeholder="Digite seu nome completo" required>
+                        <input type="text" name="nome" class="form-control" id="nome" placeholder="Digite seu nome completo" required value="<?php if(isset($_POST['nome'])) echo $_POST['nome']?>">
                     </div>
                     <div class="mb-3">
                         <label for="telefone" class="form-label fw-bold">Telefone</label>
-                        <input type="tel" name="telefone" class="form-control" id="telefone" maxlength="11" placeholder="Digite seu telefone com o DDD somente números" required>
+                        <input type="tel" name="telefone" class="form-control" id="telefone" maxlength="11" placeholder="Digite seu telefone com o DDD somente números" required value="<?php if(isset($_POST['telefone'])) echo $_POST['telefone']?>">
                     </div>
                     <div class="mb-3">
                         <label for="produto" class="form-label fw-bold">Produto</label>
-                        <input type="text" name="produto" class="form-control" id="produto" placeholder="Digite o nome do produto" required>
+                        <input type="text" name="produto" class="form-control" id="produto" placeholder="Digite o nome do produto" required value="<?php if(isset($_POST['produto'])) echo $_POST['produto']?>">
                     </div>
                     <div class="mb-3">
                         <label for="categoria" class="form-label fw-bold">Categoria</label>
                         <select class="form-select" id="categoria" name="categoria" required>
-                            <option value="" disable selected>Selecione a categoria do produto</option>
-                            <option value="Cadeiras">Cadeiras</option>
-                            <option value="Andadores">Andadores</option>
-                            <option value="Muletas">Muletas</option>
-                            <option value="Outros">Outros</option>
+                        <option value="" disabled selected>Selecione a categoria do produto</option>
+                        <option value="Cadeiras" <?php if(isset($_POST['categoria']) && $_POST['categoria'] == 'Cadeiras') echo 'selected'; ?>>Cadeiras</option>
+                        <option value="Andadores" <?php if(isset($_POST['categoria']) && $_POST['categoria'] == 'Andadores') echo 'selected'; ?>>Andadores</option>
+                        <option value="Muletas" <?php if(isset($_POST['categoria']) && $_POST['categoria'] == 'Muletas') echo 'selected'; ?>>Muletas</option>
+                        <option value="Outros" <?php if(isset($_POST['categoria']) && $_POST['categoria'] == 'Outros') echo 'selected'; ?>>Outros</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="oferta" class="form-label fw-bold">Oferta</label>
                         <select class="form-select" id="oferta"  name="oferta" onchange="atualizarValor()" required>
-                            <option value="" disable selected>Selecione o tipo de oferta</option>
-                            <option value="Pago">Pago</option>
-                            <option value="Gratuito">Gratuito</option>
-                            <option value="Doação">Doação</option>
+                        <option value="Pago" <?php if(isset($_POST['oferta']) && $_POST['oferta'] == 'Pago') echo 'selected'; ?>>Pago</option>
+                        <option value="Gratuito" <?php if(isset($_POST['oferta']) && $_POST['oferta'] == 'Gratuito') echo 'selected'; ?>>Gratuito</option>
+                        <option value="Doação" <?php if(isset($_POST['oferta']) && $_POST['oferta'] == 'Doação') echo 'selected'; ?>>Doação</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="valor" class="form-label fw-bold">*Valor (apenas em ofertas com valores)</label>
-                        <input type="text" name="valor" class="form-control" id="valor" placeholder="Digite o valor do produto" required>
+                        <input type="text" name="valor" class="form-control" id="valor" placeholder="Digite o valor do produto" required value="<?php if(isset($_POST['valor'])) echo $_POST['valor']?>">
                     </div>
                     <div class="mb-3">
                         <label for="descricao" class="form-label fw-bold">Descrição</label>
-                        <textarea class="form-control" name="descricao" id="descricao" rows="3" placeholder="Digite as características do produto" required></textarea>
+                        <textarea class="form-control" name="descricao" id="descricao" rows="3" placeholder="Digite as características do produto" required> <?php if(isset($_POST['descricao'])) echo $_POST['descricao']?></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="foto" class="form-label fw-bold">Adicionar foto do produto</label>
@@ -230,23 +234,23 @@ if(isset($_FILES['arquivo'])){
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="cep" class="form-label fw-bold">CEP</label>
-                        <input type="text" class="form-control" name="cep" id="cep" placeholder="Digite o número do seu CEP" required>
+                        <input type="text" class="form-control" name="cep" id="cep" placeholder="Digite o número do seu CEP" required value="<?php if(isset($_POST['cep'])) echo $_POST['cep']?>">
                     </div>
                     <div class="mb-3">
                         <label for="endereco" class="form-label fw-bold">Logradouro</label>
-                        <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="" required>
+                        <input type="text" class="form-control" name="logradouro" id="logradouro" placeholder="" required value="<?php if(isset($_POST['logradouro'])) echo $_POST['logradouro']?>">
                     </div>
                     <div class="mb-3">
                         <label for="bairro" class="form-label fw-bold">Bairro</label>
-                        <input type="text" class="form-control" name="bairro" id="bairro" placeholder="" required>
+                        <input type="text" class="form-control" name="bairro" id="bairro" placeholder="" required value="<?php if(isset($_POST['bairro'])) echo $_POST['bairro']?>">
                     </div>
                     <div class="mb-3">
                         <label for="municipio" class="form-label fw-bold">Localidade</label>
-                        <input type="text" class="form-control" name="localidade" id="localidade" placeholder="" required>
+                        <input type="text" class="form-control" name="localidade" id="localidade" placeholder="" required value="<?php if(isset($_POST['localidade'])) echo $_POST['localidade']?>">
                     </div>
                     <div class="mb-3">
                         <label for="uf" class="form-label fw-bold">UF</label>
-                        <input type="text" class="form-control" name="uf" id="uf" placeholder="" required>
+                        <input type="text" class="form-control" name="uf" id="uf" placeholder="" required value="<?php if(isset($_POST['uf'])) echo $_POST['uf']?>">
                     </div>
                     
                 </div>
