@@ -1,4 +1,3 @@
-
 <?php
 include("conexao.php");
 session_start();
@@ -96,39 +95,69 @@ $result = $conn->query($sql);
             align-items: center;
             gap: 10px;
         }
+        
+        .navbar-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-align: center;
+            width: 100%;
+        }
+        @media (min-width: 992px) {
+        .navbar-header {
+            position: relative;
+        }
+
+        .navbar-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 0;
+            white-space: nowrap;
+        }
+        }
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container-fluid position-relative">
-        <a class="navbar-brand" href="#">
-            <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
-        </a>
-        <span class="navbar-text fs-4 fw-bold text-dark position-absolute start-50 translate-middle-x">PRODUTOS CADASTRADOS</span>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto flex-row">
-                <li class="nav-item">
-                    <a class="nav-link fs-2 me-2" href="home.php"><i class="bi bi-house"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-2 me-2" href="meus-produtos.php"><i class="bi bi-box"></i></a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link fs-2 me-2 dropdown-toggle" href="home.php" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="meus-produtos.php">Meus Produtos</a></li>
-                        <li><a class="dropdown-item" href="cad-prod.php">Cadastrar Produto</a></li>
-                        <li><a class="dropdown-item" href="area-interesses.php">Minha Área de Interesses</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="login.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
-                    </ul>
-                </li>
-            </ul>
+    <div class="container-fluid d-flex flex-column flex-lg-row align-items-center justify-content-between">
+        <!-- Logo + Título -->
+        <div class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
+            <a class="navbar-brand me-lg-3" href="#">
+                <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
+            </a>
+            <span class="navbar-title fs-4 fw-bold text-dark text-center mt-2 mt-lg-0">PRODUTOS CADASTRADOS</span>
+        </div>
+
+        <!-- Botões / Ícones à direita -->
+        <div class="d-flex align-items-center mt-3 mt-lg-0">
+            <button class="navbar-toggler me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link fs-2 me-2" href="home.php"><i class="bi bi-house"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-2 me-2" href="meus-produtos.php"><i class="bi bi-box"></i></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link fs-2 me-2 dropdown-toggle" href="home.php" id="userDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="meus-produtos.php">Meus Produtos</a></li>
+                            <li><a class="dropdown-item" href="cad-prod.php">Cadastrar Produto</a></li>
+                            <li><a class="dropdown-item" href="area-interesses.php">Minha Área de Interesses</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="login.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

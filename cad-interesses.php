@@ -14,32 +14,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $nome = $_POST['produto'];
     $produto = isset($_POST['categoria']) ? $_POST['categoria'] : '';
 
-if(empty($nome)){
-    echo "<script>alert('Digite o nome de um produto.');
-    </script>";
+    if(empty($nome)){
+        echo "<script>alert('Digite o nome de um produto.');</script>";
+    } else if($produto === ''){
+        echo "<script>alert('Selecione uma categoria.');</script>";
+    } else {
+        $sql = "INSERT INTO tb_area_interesse (tb_usuarios_id_usuarios, nome_produto, categoria_interesse, data_interesse) VALUES(?,?,?, NOW())";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", $usuario_id, $nome, $produto);
 
-}else if($produto ===''){
-    echo "<script>alert('Selecione uma categoria.');
-    </script>";
-}else{
-    $sql = "INSERT INTO tb_area_interesse (tb_usuarios_id_usuarios, nome_produto, categoria_interesse, data_interesse) VALUES(?,?,?, NOW())";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iss", $usuario_id, $nome, $produto);
-
-if($stmt->execute()){
-echo "<script>alert('Produto Cadastrado com Sucesso.');
-window.location.href = 'area-interesses.php'
-</script>";
-
-}else{
-echo "<script>alert('Produto Não Cadastrado.');
-window.location.href = 'cad-interesses.php'
-</script>";
+        if($stmt->execute()){
+            echo "<script>alert('Produto Cadastrado com Sucesso.');
+            window.location.href = 'area-interesses.php'
+            </script>";
+        } else {
+            echo "<script>alert('Produto Não Cadastrado.');
+            window.location.href = 'cad-interesses.php'
+            </script>";
+        }
+    }
 }
-}
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +41,7 @@ window.location.href = 'cad-interesses.php'
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Área de Interresse</title>
+    <title>Cadastro de Área de Interesse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
@@ -58,40 +52,13 @@ window.location.href = 'cad-interesses.php'
             background-color: #FFFAEB;
         }
         .form-container {
-            display:flex;
             background-color: white;
-            justify-content: center;
-            align-items:center;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 40%;
-            padding-top:100px;
-            padding-bottom:50px
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
         }
-        
-        @media (max-width: 770px) {
-    .form-container {
-        width: 80%; /* Aumenta a largura do formulário para 60% em telas menores */
-        padding-top: 80px; /* Ajuste do padding se necessário */
-        padding-bottom: 40px; /* Ajuste do padding se necessário */
-    }
-}
-
-@media (min-width: 601px) and (max-width: 768px) {
-    .container {
-        width: 70%;  /* Ajusta a largura para 70% em telas médias */
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-}
-@media (min-width: 769px) and (max-width: 1024px) {
-    .container {
-        width: 100%;  /* Ajusta a largura para 70% em telas médias */
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-}
-
     </style>
 </head>
 <body>
@@ -99,9 +66,9 @@ window.location.href = 'cad-interesses.php'
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
+                <img src="./img/logo.jpg" alt="Logo" style="max-height: 100px;">
             </a>
-            <span class="navbar-text fs-4 fw-bold text-dark position-absolute start-50 translate-middle-x">CADASTRO DA ÁREA DE INTERESSE</span>
+            <span class="navbar-text fs-6 fs-md-4 fw-bold text-dark w-100 text-center">CADASTRO DA ÁREA DE INTERESSE</span>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -113,10 +80,8 @@ window.location.href = 'cad-interesses.php'
                     <li class="nav-item">
                         <a class="nav-link fs-2 me-2" href="meus-produtos.php"><i class="bi bi-box"></i></a>
                     </li>
-    
-                    <!-- Dropdown do usuário -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link fs-2 me-2 dropdown-toggle" href="home.php" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link fs-2 me-2 dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -133,14 +98,14 @@ window.location.href = 'cad-interesses.php'
     </nav>
 
     <!-- Conteúdo Principal -->
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="form-container container-fluid">
-            <form class="col-12" method="POST" action="">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="form-container">
+            <form class="w-100" method="POST" action="">
                 <div class="mb-3">
-                    <h4>Digite o nome do produto:</h4>
-                    <input type="text" class="form-control" id="nomeProduto" name="produto" value="<?php if(isset($_POST['produto'])) echo $_POST['produto'];?>"  placeholder="Insira aqui...">
+                    <h5>Digite o nome do produto:</h5>
+                    <input type="text" class="form-control" id="nomeProduto" name="produto" value="<?php if(isset($_POST['produto'])) echo $_POST['produto'];?>" placeholder="Insira aqui...">
                 </div>
-    
+
                 <div class="mb-3">
                     <select class="form-select" id="categoriaProduto" name="categoria">
                         <option value="" disabled selected>Selecione a categoria do Produto</option>
@@ -150,7 +115,7 @@ window.location.href = 'cad-interesses.php'
                         <option value="Outros">Outros</option>
                     </select>
                 </div>
-    
+
                 <div class="d-flex gap-2 justify-content-center">
                     <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Salvar</button>
                     <button type="button" class="btn btn-danger"><i class="fas fa-times"></i> Cancelar</button>
@@ -158,6 +123,7 @@ window.location.href = 'cad-interesses.php'
             </form>
         </div>
     </div>
+
     <!-- Rodapé -->
     <footer class="text-center py-4 text-white" style="background-color: #001F36;">
         <div class="container">

@@ -46,10 +46,24 @@ $conn->close();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Login de Usuário</title>
+
+    <style>
+        @media (max-width: 576px) {
+            .header-login {
+                flex-direction: column !important;
+                text-align: center;
+            }
+        }
+
+        .header-login .navbar-brand,
+        .header-login span {
+            margin-bottom: 10px;;
+        }
+    </style>
   </head>
   <body>
-    <nav class="navbar navbar-light" style="background-color: white; margin-right: 120px;">
-        <div class="container-fluid d-flex justify-content-center align-items-center">
+    <nav class="navbar navbar-light" style="background-color: white;">
+        <div class="container-fluid d-flex justify-content-center align-items-center header-login">
             <!-- Logo -->
             <a class="navbar-brand">
                 <img src="./img/logo.jpg" alt="Logo" style="max-height: 100px">

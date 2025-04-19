@@ -1,11 +1,10 @@
 <?php
-  include("conexao.php");
-  session_start();
-  $id_usuario = $_SESSION['usuario_id'];
-  $sql = "SELECT * FROM tb_area_interesse WHERE tb_usuarios_id_usuarios = $id_usuario";
-  $result = $conn->query($sql);
+include("conexao.php");
+session_start();
+$id_usuario = $_SESSION['usuario_id'];
+$sql = "SELECT * FROM tb_area_interesse WHERE tb_usuarios_id_usuarios = $id_usuario";
+$result = $conn->query($sql);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,26 +17,74 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-
     <style>
-        .container_interesse{
+        /* Estilos gerais */
+        .container_interesse {
             background-color: #fff;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .botoes{
-            display:flex;
-            gap:10px;
+        .botoes {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .categoria_produto{
-            font-size:20px;
+        .categoria_produto {
+            font-size: 20px;
+        }
+
+        .texto-titulo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 50%;
+            text-align: center;
+        }
+
+        /* Responsividade */
+        @media (max-width: 576px) {
+            .text-center-mobile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .texto-titulo {
+                position: static !important;
+                transform: none !important;
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            /* Ajustes para o conteúdo e a largura das colunas */
+            .container-fluid {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .container_interesse {
+                margin-bottom: 15px;
+                width: 100%; /* Garantir que ocupe toda a largura */
+            }
+
+            .botoes {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -45,10 +92,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container-fluid position-relative">
-            <a class="navbar-brand" href="#">
-                <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
-            </a>
-            <span class="navbar-text fs-4 fw-bold text-dark position-absolute start-50 translate-middle-x">MINHA ÁREA DE INTERESSES</span>
+            <div class="logo-e-texto text-center-mobile">
+                <a class="navbar-brand" href="#">
+                    <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
+                </a>
+                <span class="navbar-text fs-4 fw-bold text-dark texto-titulo">MINHA ÁREA DE INTERESSES</span>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,33 +131,30 @@
     <!-- Conteúdo Principal -->
     <div class="container-fluid py-5" style="background-color: #FFFAEB;">
         <div class="container text-center">
-        <a href="cad-interesses.php">
-            <button class="btn btn-primary mb-4">
-                <i class="fas fa-plus">
-                   
-                </i> Adicionar Interesse</button>
-                </a>
-            
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                   <?php
-                     if($result && $result->num_rows > 0){
-                        while ($row = $result->fetch_assoc()){
-                          echo "<div class='container_interesse'>";
-                          echo "<div class='item'>";
-                          
-                          echo "<h2>" . $produto = $row['nome_produto'] . "</h2>";
-                          echo "<p class='categoria_produto'>" . "Categoria: " . $categoria = $row['categoria_interesse'] . "</p>";
-                          echo "<div class='botoes'>";
-                          echo "<a href='editar-interesses.php?id=" . $row['id'] . "' class='btn btn-primary'><i class='bi bi-pencil'></i> Editar Produto</a>";               
-                          echo "<a href='deletar-interesses.php?id=" . $row['id'] . "' class='btn btn-danger' onclick=\"return confirm('Você tem certeza que deseja remover este produto?');\"><i class='bi bi-trash'></i> Remover Produto</a>";
-                          echo "</div>";
-                          echo "</div>";
-                          echo "</div>";
+            <a href="cad-interesses.php">
+                <button class="btn btn-primary mb-4">
+                    <i class="fas fa-plus"></i> Adicionar Interesse
+                </button>
+            </a>
 
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
+                    <?php
+                    if ($result && $result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<div class='container_interesse'>";
+                            echo "<div class='item'>";
+                            echo "<h2>" . $row['nome_produto'] . "</h2>";
+                            echo "<p class='categoria_produto'>" . "Categoria: " . $row['categoria_interesse'] . "</p>";
+                            echo "<div class='botoes'>";
+                            echo "<a href='editar-interesses.php?id=" . $row['id'] . "' class='btn btn-primary'><i class='bi bi-pencil'></i> Editar Produto</a>";               
+                            echo "<a href='deletar-interesses.php?id=" . $row['id'] . "' class='btn btn-danger' onclick=\"return confirm('Você tem certeza que deseja remover este produto?');\"><i class='bi bi-trash'></i> Remover Produto</a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</div>";
                         }
-                     }
-                   ?>
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -124,3 +170,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

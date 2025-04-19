@@ -139,6 +139,36 @@ else{
     body {
         background-color: #FFFAEB;
     }
+
+    @media (max-width: 575.98px) {
+    .text-center h2 {
+        font-size: 1.2rem;
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .navbar-brand img {
+        max-height: 80px;
+    }
+
+    .container form .row > div {
+        margin-bottom: 1rem;
+    }
+
+    input, select, textarea {
+        font-size: 0.9rem;
+    }
+
+    .form-control, .form-select {
+        padding: 8px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
     </style>
   </head>
   <body>

@@ -27,8 +27,7 @@ $result = $conn->query($sql_categorias);
         .item-container {
           grid-template-columns: 1fr; /* 1 coluna em telas pequenas */
         }
-      }
-
+      } 
       .categoria-item img {
         margin: 0 auto;
         display: block;
@@ -63,7 +62,7 @@ $result = $conn->query($sql_categorias);
         <a class="navbar-brand">
           <img src="./img/logo.jpg" alt="Logo" style="max-height: 130px;">
         </a>
-        <div class="d-flex ms-auto me-5">
+        <div class="d-flex ms-auto me-5 botao-container">
           <a class="btn btn-primary me-2" href="login.php">Entrar</a>
           <a class="btn btn-success" style="background-color: rgb(0, 156, 0);" href="cad-usuario.php">Cadastre-se</a>
         </div>
