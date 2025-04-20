@@ -139,6 +139,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         body {
             background-color: #FFFAEB;
         }
+        .navbar {
+            display: flex;
+            flex-wrap: wrap;  
+            justify-content: space-between;
+        }
+
+        .text-center {
+            display: flex;  
+            justify-content: center;  
+            position: center;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -149,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
             </a>
             <div class="text-center" style="text-align: center; justify-content: center;">
-                <h2>CADASTRO DE PRODUTO</h2>
+                <h2>EDITAR PRODUTO CADASTRADO</h2>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -161,6 +173,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-2 me-2" href="meus-produtos.php"><i class="bi bi-box"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-2 me-2" href="contato.php"><i class="bi bi-envelope"></i></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link fs-2 me-2 dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -179,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </nav>
 
-    <div class="container mt-5 bg-white p-4 rounded shadow">
+    <div class="container mt-5 mb-5 bg-white p-4 rounded shadow">
         <form id="formCadastro" enctype="multipart/form-data" action="" method="POST">
             <div class="row">
                 <div class="col-md-6">

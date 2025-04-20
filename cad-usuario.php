@@ -74,7 +74,7 @@ echo "<script>alert('Preencha um email Válido');</script>";
     <title>Cadastro de Usuário</title>
   </head>
   <body>
-    <nav class="navbar navbar-light" style="background-color: white; margin-right: 120px;">
+    <nav class="navbar navbar-light" style="background-color: white;">
         <div class="container-fluid d-flex justify-content-center align-items-center">
             <a class="navbar-brand">
                 <img src="./img/logo.jpg" alt="Logo" style="max-height: 100px">
