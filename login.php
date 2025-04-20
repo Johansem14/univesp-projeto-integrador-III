@@ -54,26 +54,21 @@ $conn->close();
                 text-align: center;
             }
         }
-
-        .header-login .navbar-brand,
-        .header-login span {
-            margin-bottom: 10px;;
+        .header-login .navbar-brand,.header-login span {
+            margin-bottom: 10px;
         }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-light" style="background-color: white;">
         <div class="container-fluid d-flex justify-content-center align-items-center header-login">
-            <!-- Logo -->
             <a class="navbar-brand">
                 <img src="./img/logo.jpg" alt="Logo" style="max-height: 100px">
             </a>
-            <!-- Texto centralizado -->
             <span class="mx-auto fs-3"><strong>LOGIN DE USUÁRIO</strong></span>
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container-fluid py-5" style="background-color: #FFFAEB">
         <div class="container d-flex justify-content-center">
             <div class="col-md-6">

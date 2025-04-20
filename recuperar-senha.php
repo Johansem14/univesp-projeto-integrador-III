@@ -21,34 +21,7 @@ session_start();
                 <img src="./img/logo.jpg" alt="Logo" style="max-height: 120px;">
             </a>
             <span class="navbar-text fs-4 fw-bold text-dark position-absolute start-50 translate-middle-x">RECUPERAR SENHA</span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto flex-row">
-                    <li class="nav-item">
-                        <a class="nav-link fs-2 me-2" href="home.php"><i class="bi bi-house"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-2 me-2" href="meus-produtos.php"><i class="bi bi-box"></i></a>
-                    </li>
-    
-                    <!-- Dropdown do usuário -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link fs-2 me-2 dropdown-toggle" href="home.php" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="meus-produtos.php">Meus Produtos</a></li>
-                            <li><a class="dropdown-item" href="cad-prod.php">Cadastrar Produto</a></li>
-                            <li><a class="dropdown-item" href="area-interesses.php">Minha Área de Interesses</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-danger" href="login.php"><i class="bi bi-box-arrow-right"></i> Sair</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
+       </div>
     </nav>
 
     <section class="container">
@@ -66,7 +39,6 @@ session_start();
 
 <footer class="text-center py-5" style="background-color: #001F36;">
     <div class="container text-white">
-        <p class="mb-4 fw-bold fst-italic">*ESTA PLATAFORMA NÃO OFERECE SUPORTE DE TRANSAÇÕES BANCÁRIAS, ENTRE EM CONTATO COM O USUÁRIO DO ANÚNCIO PARA NEGOCIAÇÕES SOBRE O PAGAMENTO E RETIRADA DO PRODUTO.</p>
         <p class="mb-0">Conecta+ © 2025 Projeto Integrador III - Todos os direitos reservados.</p>
     </div>
 </footer>

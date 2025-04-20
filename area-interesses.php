@@ -109,6 +109,9 @@ $result = $conn->query($sql);
                     <li class="nav-item">
                         <a class="nav-link fs-2 me-2" href="meus-produtos.php"><i class="bi bi-box"></i></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-2 me-2" href="contato.php"><i class="bi bi-envelope"></i></a>
+                    </li>
     
                     <!-- Dropdown do usuário -->
                     <li class="nav-item dropdown">

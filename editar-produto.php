@@ -174,6 +174,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <li class="nav-item">
                         <a class="nav-link fs-2 me-2" href="meus-produtos.php"><i class="bi bi-box"></i></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-2 me-2" href="contato.php"><i class="bi bi-envelope"></i></a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link fs-2 me-2 dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person"></i>
@@ -191,7 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </nav>
 
-    <div class="container mt-5 bg-white p-4 rounded shadow">
+    <div class="container mt-5 mb-5 bg-white p-4 rounded shadow">
         <form id="formCadastro" enctype="multipart/form-data" action="" method="POST">
             <div class="row">
                 <div class="col-md-6">
