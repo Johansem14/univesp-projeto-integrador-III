@@ -1,7 +1,7 @@
 <?php
 include("../conexao.php");
 
-$sql_produtos = "SELECT * FROM categoria_interesse_vw";
+$sql_produtos = "SELECT * FROM categoria_mais_cadastrada_vw";
 $result = $conn->query($sql_produtos);
 
 $data = [];
